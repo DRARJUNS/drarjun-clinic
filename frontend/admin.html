@@ -348,13 +348,17 @@
                             </div>
 
                             <div class="notif-box config-box">
-                                <h4><i class="fas fa-cog"></i> Gmail SMTP Configuration</h4>
-                                <p>To enable real email dispatch through your Gmail account:</p>
+                                <h4><i class="fas fa-cog"></i> Cloud Email Setup (Render / Free API)</h4>
+                                <p>Render blocks standard SMTP ports. Use <strong>Brevo</strong> (100% free, 300 emails/day) or Gmail SMTP:</p>
                                 <ol class="steps-list">
-                                    <li>Go to <a href="https://myaccount.google.com/security" target="_blank">Google Account Security</a>.</li>
-                                    <li>Enable <strong>2-Step Verification</strong> &gt; Click <strong>App passwords</strong>.</li>
-                                    <li>Create an App Password for <em>"Mail"</em> and copy the 16-letter code.</li>
-                                    <li>Save in <code>backend/.env</code>:
+                                    <li><strong>Option A: Brevo (Recommended for Render)</strong>:
+                                        <ul style="margin: 5px 0 10px 15px; font-size: 13px; color: #555;">
+                                            <li>Sign up free at <a href="https://app.brevo.com/" target="_blank">brevo.com</a>.</li>
+                                            <li>Go to <strong>SMTP & API</strong> &gt; Generate an <strong>API Key</strong>.</li>
+                                            <li>In Render Dashboard &gt; <strong>Environment</strong>, add: <code>BREVO_API_KEY=your_key</code></li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Option B: Gmail App Password (Localhost)</strong>:
                                         <pre><code>SMTP_USER=drarjunshomoeocare@gmail.com
 SMTP_PASS=your_16_character_app_password</code></pre>
                                     </li>

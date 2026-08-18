@@ -8,7 +8,9 @@ const config = {
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
     CLIENT_URL: process.env.CLIENT_URL || '*',
     
-    // SMTP Mail Config
+    // SMTP & HTTP Mail Config (Brevo / Resend / Gmail SMTP)
+    BREVO_API_KEY: process.env.BREVO_API_KEY || '',
+    RESEND_API_KEY: process.env.RESEND_API_KEY || '',
     SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
     SMTP_PORT: parseInt(process.env.SMTP_PORT || '587', 10),
     SMTP_USER: process.env.SMTP_USER || '',

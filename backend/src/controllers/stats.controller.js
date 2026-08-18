@@ -55,39 +55,36 @@ const getOverviewStats = asyncHandler(async (req, res) => {
  * POST /api/v1/stats/test-email
  */
 const testEmailNotification = asyncHandler(async (req, res) => {
-    const { getTransporter } = require('../config/mailer');
+    const { sendEmail } = require('../services/email.service');
     const config = require('../config/env');
-    const transporter = getTransporter();
 
     const targetEmail = req.body.email || config.CLINIC_NOTIFICATION_EMAIL;
 
-    if (!transporter) {
-        throw ApiError.badRequest('SMTP is not yet configured in backend/.env. Please replace SMTP_PASS placeholder with your Gmail App Password.');
-    }
-
-    const mailOptions = {
-        from: config.EMAIL_FROM,
-        to: targetEmail,
-        subject: `🧪 Test Email - Dr Arjun's Homoeo Care`,
-        html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
-                <div style="background-color: #0b8457; color: #ffffff; padding: 20px; text-align: center;">
-                    <h2 style="margin: 0;">SMTP Test Successful!</h2>
-                </div>
-                <div style="padding: 20px; color: #333;">
-                    <p>Hello Admin,</p>
-                    <p>This is a test email confirming that your email notification system for <strong>Dr Arjun's Homoeo Care</strong> is working properly.</p>
-                    <p>Patients and clinic administrators will automatically receive real-time email notifications for every booked appointment.</p>
-                    <p style="color: #666; font-size: 13px;">Timestamp: ${new Date().toLocaleString('en-IN')}</p>
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+            <div style="background-color: #0b8457; color: #ffffff; padding: 20px; text-align: center;">
+                <h2 style="margin: 0;">Email System Test Successful! 🌿</h2>
+            </div>
+            <div style="padding: 24px; color: #333; line-height: 1.6;">
+                <p>Hello Doctor / Admin,</p>
+                <p>This is a test notification confirming that the automated email dispatch system for <strong>Dr Arjun's Homoeo Care</strong> is live and operating correctly.</p>
+                <p>Patients and clinic staff will receive real-time confirmations whenever appointments are scheduled or updated.</p>
+                <div style="background-color: #f4fbf7; border-left: 4px solid #0b8457; padding: 12px; margin: 15px 0;">
+                    <p style="margin: 0; font-size: 13px; color: #0b8457;"><strong>Status:</strong> Active & Connected</p>
+                    <p style="margin: 4px 0 0 0; font-size: 12px; color: #666;">Timestamp: ${new Date().toLocaleString('en-IN')}</p>
                 </div>
             </div>
-        `
-    };
+        </div>
+    `;
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail({
+            to: targetEmail,
+            subject: `🧪 Test Email - Dr Arjun's Homoeo Care`,
+            html
+        });
     } catch (mailError) {
-        throw ApiError.badRequest(`SMTP delivery failed: ${mailError.message}. Please check your Gmail App Password and ensure 2-Step Verification is active.`);
+        throw ApiError.badRequest(`Email delivery failed: ${mailError.message}. For cloud hosting on Render, you can configure BREVO_API_KEY (recommended) or check your SMTP settings.`);
     }
 
     return ApiResponse.success(res, `Test email successfully sent to ${targetEmail}!`);
