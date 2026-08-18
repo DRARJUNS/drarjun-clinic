@@ -53,6 +53,12 @@ const login = async (email, password) => {
         throw ApiError.forbidden('This account has been deactivated. Please contact the administrator.');
     }
 
+    const ROLES = require('../constants/roles');
+    const allowedRoles = [ROLES.SUPER_ADMIN, ROLES.DOCTOR, ROLES.RECEPTIONIST];
+    if (!allowedRoles.includes(user.role)) {
+        throw ApiError.forbidden('Access denied. Only doctors and authorized clinic personnel can access this portal.');
+    }
+
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
         throw ApiError.unauthorized('Invalid email or password.');
