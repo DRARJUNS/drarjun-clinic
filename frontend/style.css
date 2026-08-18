@@ -77,40 +77,32 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: #fff;
     z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-}
-
-header.scrolled {
-    background: #ffffff;
-    box-shadow: 0 4px 20px rgba(11, 107, 58, 0.12);
+    box-shadow: 0 3px 10px rgb(89, 134, 89);
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 76px;
-    padding: 0 20px;
+    height: 75px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
     flex-shrink: 0;
 }
 
 .logo img {
-    width: 48px;
-    height: 48px;
+    height: 50px;
+    width: auto;
+    max-width: 58px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .logo h2 {
@@ -118,62 +110,30 @@ header .container {
     font-size: 20px;
     font-weight: 700;
     white-space: nowrap;
-    letter-spacing: -0.2px;
+    line-height: 1.2;
+    margin: 0;
 }
 
 nav ul {
     display: flex;
-    align-items: center;
-    gap: 24px;
+    gap: 30px;
 }
 
 nav ul li a {
-    color: #1e293b;
-    font-size: 15px;
+    color: #070707;
     font-weight: 500;
-    padding: 6px 0;
-    position: relative;
-    transition: color 0.2s ease;
-}
-
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2.5px;
-    background: #0b6b3a;
-    border-radius: 2px;
-    transition: width 0.25s ease;
+    transition: .3s;
 }
 
 nav ul li a:hover {
     color: #0b6b3a;
 }
 
-nav ul li a:hover::after {
-    width: 100%;
-}
-
 .menu-btn {
     display: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 8px;
-    background: #f0fdf4;
-    color: #0b6b3a;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+    font-size: 28px;
     cursor: pointer;
-    border: 1px solid #bbf7d0;
-    transition: all 0.2s ease;
-}
-
-.menu-btn:hover {
-    background: #dcfce7;
-    color: #065f46;
+    color: #0b6b3a;
 }
 
 /* ===================================
@@ -910,48 +870,29 @@ footer {
 /* ===================================
    RESPONSIVE DESIGN
 =================================== */
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
     header .container {
-        height: 68px;
-        padding: 0 18px;
+        height: 70px;
     }
 
     .logo img {
-        width: 44px;
-        height: 44px;
+        height: 46px;
+        max-width: 52px;
     }
 
     .logo h2 {
         font-size: 18px;
     }
 
-    .menu-btn {
-        display: flex;
-    }
-
     nav {
         position: absolute;
-        top: 68px;
+        top: 70px;
         left: 0;
         width: 100%;
-        background: #ffffff;
-        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
-        border-top: 1px solid #f1f5f9;
-        border-bottom: 2px solid #0b6b3a;
-        padding: 10px 0 18px 0;
+        background: #fff;
         display: none;
-        animation: navSlideDown 0.25s ease forwards;
-    }
-
-    @keyframes navSlideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-8px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        padding: 20px 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     nav.active {
@@ -960,33 +901,16 @@ footer {
 
     nav ul {
         flex-direction: column;
-        align-items: stretch;
-        gap: 2px;
-        padding: 0 16px;
+        align-items: center;
+        gap: 15px;
     }
 
     nav ul li {
-        width: 100%;
-        margin: 0;
+        margin: 5px 0;
     }
 
-    nav ul li a {
+    .menu-btn {
         display: block;
-        padding: 12px 16px;
-        font-size: 15px;
-        border-radius: 8px;
-        color: #334155;
-        font-weight: 500;
-    }
-
-    nav ul li a::after {
-        display: none;
-    }
-
-    nav ul li a:hover {
-        background: #f0fdf4;
-        color: #0b6b3a;
-        padding-left: 20px;
     }
 
     .hero-content h1 {
@@ -1011,15 +935,14 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     header .container {
-        height: 64px;
-        padding: 0 14px;
+        height: 65px;
     }
 
     .logo img {
-        width: 38px;
-        height: 38px;
+        height: 40px;
+        max-width: 46px;
     }
 
     .logo h2 {
@@ -1027,7 +950,7 @@ footer {
     }
 
     nav {
-        top: 64px;
+        top: 65px;
     }
 
     .hero {
@@ -1050,15 +973,5 @@ footer {
     .doctor-card img {
         width: 180px;
         height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        gap: 8px;
-    }
-
-    .logo h2 {
-        font-size: 14.5px;
     }
 }
