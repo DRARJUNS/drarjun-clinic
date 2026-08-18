@@ -43,7 +43,7 @@ router.patch(
 
 router.delete(
     '/:id',
-    restrictTo(ROLES.SUPER_ADMIN),
+    restrictTo(ROLES.SUPER_ADMIN, ROLES.DOCTOR),
     appointmentController.deleteAppointment
 );
 

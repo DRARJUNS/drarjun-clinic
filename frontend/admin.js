@@ -342,6 +342,7 @@ function renderAppointmentsTable(appointments) {
                         ${appt.status !== 'COMPLETED' ? `<button class="btn-icon complete" title="Mark Completed" onclick="updateStatus('${appt._id}', 'COMPLETED')"><i class="fas fa-user-check"></i></button>` : ''}
                         ${appt.status !== 'CANCELLED' ? `<button class="btn-icon cancel" title="Cancel Appointment" onclick="updateStatus('${appt._id}', 'CANCELLED')"><i class="fas fa-times"></i></button>` : ''}
                         <button class="btn-icon" title="View Patient Details & Remedy Notes" onclick="openDetailsModal('${appt._id}')"><i class="fas fa-notes-medical"></i></button>
+                        <button class="btn-icon delete" title="Permanently Delete Record" onclick="deleteAppointmentRecord('${appt._id}')"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 </td>
             </tr>
@@ -371,9 +372,14 @@ function renderRecentAppointments(appointments) {
                 <td>${dateStr}</td>
                 <td><span class="status-badge ${statusClass}">${appt.status}</span></td>
                 <td>
-                    <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px;" onclick="openDetailsModal('${appt._id}')">
-                        <i class="fas fa-file-medical"></i> Case
-                    </button>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="openDetailsModal('${appt._id}')">
+                            <i class="fas fa-file-medical"></i> Case
+                        </button>
+                        <button class="btn-icon delete" style="width: 26px; height: 26px; font-size: 10px;" title="Delete Record" onclick="deleteAppointmentRecord('${appt._id}')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
         `;
@@ -404,6 +410,36 @@ async function updateStatus(id, newStatus) {
 
     } catch (err) {
         showToast(err.message, 'error');
+    }
+}
+
+// Delete Appointment Record
+async function deleteAppointmentRecord(id) {
+    if (!confirm('Are you sure you want to permanently delete this appointment record? This action cannot be undone.')) return;
+
+    try {
+        const response = await fetch(`${API_BASE}/appointments/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'Failed to delete appointment record.');
+
+        showToast('🗑️ Appointment permanently deleted.', 'info');
+        if (activeAppointmentId === id) closeModal();
+        await Promise.all([loadStats(), loadAppointments()]);
+
+    } catch (err) {
+        showToast(err.message, 'error');
+    }
+}
+
+function deleteActiveAppointment() {
+    if (activeAppointmentId) {
+        deleteAppointmentRecord(activeAppointmentId);
     }
 }
 

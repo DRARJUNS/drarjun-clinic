@@ -398,11 +398,16 @@ SMTP_PASS=your_16_character_app_password</code></pre>
             <div class="modal-body" id="modal-body-content">
                 <!-- Injected dynamically -->
             </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn-primary" id="modal-save-notes-btn">
-                    <i class="fas fa-save"></i> Save Clinical Notes
+            <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn-secondary" style="color: #dc2626; border-color: #fca5a5; padding: 8px 14px;" onclick="deleteActiveAppointment()">
+                    <i class="fas fa-trash-alt"></i> Delete Record
                 </button>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-secondary" onclick="closeModal()">Close</button>
+                    <button class="btn-primary" id="modal-save-notes-btn">
+                        <i class="fas fa-save"></i> Save Clinical Notes
+                    </button>
+                </div>
             </div>
         </div>
     </div>

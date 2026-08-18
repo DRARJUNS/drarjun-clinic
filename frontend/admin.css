@@ -935,6 +935,7 @@ body {
 .btn-icon.confirm:hover { background: #d1fae5; color: #065f46; border-color: #a7f3d0; }
 .btn-icon.complete:hover { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
 .btn-icon.cancel:hover { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.btn-icon.delete:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
 
 /* =========================================================
    DOCTORS GRID & PROFILE CARDS
