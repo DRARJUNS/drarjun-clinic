@@ -3,19 +3,41 @@
 =====================================*/
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector("nav");
+const menuIcon = menuBtn ? menuBtn.querySelector("i") : null;
+
+function closeMobileNav() {
+    if (nav) nav.classList.remove("active");
+    if (menuIcon) {
+        menuIcon.classList.remove("fa-times");
+        menuIcon.classList.add("fa-bars");
+    }
+}
 
 if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
-        nav.classList.toggle("active");
+    menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = nav.classList.toggle("active");
+        if (menuIcon) {
+            if (isOpen) {
+                menuIcon.classList.remove("fa-bars");
+                menuIcon.classList.add("fa-times");
+            } else {
+                menuIcon.classList.remove("fa-times");
+                menuIcon.classList.add("fa-bars");
+            }
+        }
     });
 }
 
 document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (nav) {
-            nav.classList.remove("active");
-        }
-    });
+    link.addEventListener("click", closeMobileNav);
+});
+
+// Close mobile nav when tapping outside
+document.addEventListener("click", (e) => {
+    if (nav && nav.classList.contains("active") && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeMobileNav();
+    }
 });
 
 /*=====================================

@@ -77,53 +77,103 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    box-shadow: 0 3px 10px rgb(89, 134, 89);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(11, 107, 58, 0.12);
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 76px;
+    padding: 0 20px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
 .logo img {
-    width: 80px;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 .logo h2 {
     color: #0b6b3a;
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: -0.2px;
 }
 
 nav ul {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 24px;
 }
 
 nav ul li a {
-    color: #070707;
+    color: #1e293b;
+    font-size: 15px;
     font-weight: 500;
-    transition: .3s;
+    padding: 6px 0;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: #0b6b3a;
+    border-radius: 2px;
+    transition: width 0.25s ease;
 }
 
 nav ul li a:hover {
     color: #0b6b3a;
 }
 
+nav ul li a:hover::after {
+    width: 100%;
+}
+
 .menu-btn {
     display: none;
-    font-size: 28px;
-    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #f0fdf4;
     color: #0b6b3a;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #bbf7d0;
+    transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+    background: #dcfce7;
+    color: #065f46;
 }
 
 /* ===================================
@@ -860,7 +910,85 @@ footer {
 /* ===================================
    RESPONSIVE DESIGN
 =================================== */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
+    header .container {
+        height: 68px;
+        padding: 0 18px;
+    }
+
+    .logo img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .logo h2 {
+        font-size: 18px;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    nav {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+        border-top: 1px solid #f1f5f9;
+        border-bottom: 2px solid #0b6b3a;
+        padding: 10px 0 18px 0;
+        display: none;
+        animation: navSlideDown 0.25s ease forwards;
+    }
+
+    @keyframes navSlideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        padding: 0 16px;
+    }
+
+    nav ul li {
+        width: 100%;
+        margin: 0;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 16px;
+        font-size: 15px;
+        border-radius: 8px;
+        color: #334155;
+        font-weight: 500;
+    }
+
+    nav ul li a::after {
+        display: none;
+    }
+
+    nav ul li a:hover {
+        background: #f0fdf4;
+        color: #0b6b3a;
+        padding-left: 20px;
+    }
+
     .hero-content h1 {
         font-size: 34px;
     }
@@ -885,43 +1013,21 @@ footer {
 
 @media (max-width: 768px) {
     header .container {
-        height: 70px;
+        height: 64px;
+        padding: 0 14px;
     }
 
     .logo img {
-        width: 55px;
+        width: 38px;
+        height: 38px;
     }
 
     .logo h2 {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     nav {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        display: none;
-        padding: 20px 0;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    nav.active {
-        display: block;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin: 15px 0;
-    }
-
-    .menu-btn {
-        display: block;
+        top: 64px;
     }
 
     .hero {
@@ -944,5 +1050,15 @@ footer {
     .doctor-card img {
         width: 180px;
         height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        gap: 8px;
+    }
+
+    .logo h2 {
+        font-size: 14.5px;
     }
 }
