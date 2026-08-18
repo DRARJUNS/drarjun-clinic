@@ -6,17 +6,19 @@ let transporter = null;
 
 const getTransporter = () => {
     if (!transporter) {
-        if (config.SMTP_USER && config.SMTP_PASS && config.SMTP_PASS !== 'app_password_placeholder') {
+        const cleanPass = (config.SMTP_PASS || '').replace(/\s+/g, '');
+        if (config.SMTP_USER && cleanPass && cleanPass !== 'app_password_placeholder') {
             transporter = nodemailer.createTransport({
-                host: config.SMTP_HOST,
-                port: config.SMTP_PORT,
-                secure: config.SMTP_PORT === 465,
+                service: 'gmail',
                 auth: {
                     user: config.SMTP_USER,
-                    pass: config.SMTP_PASS
-                }
+                    pass: cleanPass
+                },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 15000
             });
-            logger.info('📧 Nodemailer SMTP transporter initialized.');
+            logger.info('📧 Nodemailer SMTP transporter initialized for Gmail.');
         } else {
             logger.warn('⚠️ SMTP credentials not fully configured. Email dispatch will be simulated in console.');
         }

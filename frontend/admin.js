@@ -590,6 +590,9 @@ if (testEmailForm) {
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Test Email...';
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 20000);
+
         try {
             const response = await fetch(`${API_BASE}/stats/test-email`, {
                 method: 'POST',
@@ -597,9 +600,11 @@ if (testEmailForm) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authToken}`
                 },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ email }),
+                signal: controller.signal
             });
 
+            clearTimeout(timeoutId);
             const result = await response.json();
 
             if (!response.ok) {
@@ -609,7 +614,12 @@ if (testEmailForm) {
             showToast(`✅ ${result.message || 'Test email dispatched successfully!'}`, 'success');
 
         } catch (err) {
-            showToast(`⚠️ ${err.message}`, 'error');
+            clearTimeout(timeoutId);
+            if (err.name === 'AbortError') {
+                showToast('⚠️ Request timed out. Please check your SMTP settings and network.', 'error');
+            } else {
+                showToast(`⚠️ ${err.message}`, 'error');
+            }
         } finally {
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Test Notification';
