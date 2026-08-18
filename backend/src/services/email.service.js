@@ -181,8 +181,88 @@ const sendClinicNotificationEmail = async (appointment) => {
     }
 };
 
+/**
+ * Send notification to the patient when appointment status is updated (Confirmed, Completed, Cancelled)
+ * @param {Object} appointment 
+ */
+const sendAppointmentStatusUpdateEmail = async (appointment) => {
+    if (!appointment.patientEmail) return;
+
+    let statusTitle = 'Appointment Update';
+    let statusColor = '#0b8457';
+    let statusMessage = `Your appointment status has been updated to: <strong>${appointment.status}</strong>.`;
+
+    if (appointment.status === 'CONFIRMED') {
+        statusTitle = 'Appointment Confirmed! ✅';
+        statusColor = '#0b8457';
+        statusMessage = `Great news! Your consultation with <strong>${config.CLINIC_NAME}</strong> has been officially confirmed by our medical team.`;
+    } else if (appointment.status === 'COMPLETED') {
+        statusTitle = 'Consultation Completed 🌿';
+        statusColor = '#1e3a8a';
+        statusMessage = `Thank you for consulting with <strong>${config.CLINIC_NAME}</strong>. We hope you had a positive and healing experience.`;
+    } else if (appointment.status === 'CANCELLED') {
+        statusTitle = 'Appointment Cancelled';
+        statusColor = '#dc2626';
+        statusMessage = `Your appointment scheduled for ${new Date(appointment.appointmentDate).toLocaleDateString('en-IN')} has been cancelled. If you wish to reschedule, please contact our clinic.`;
+    }
+
+    const doctorName = appointment.doctorId?.name || "Dr Arjun's Medical Team";
+
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+            <div style="background-color: ${statusColor}; color: #ffffff; padding: 22px; text-align: center;">
+                <h1 style="margin: 0; font-size: 22px;">${statusTitle}</h1>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">${config.CLINIC_NAME}</p>
+            </div>
+            <div style="padding: 24px; color: #333333; line-height: 1.6;">
+                <p>Dear <strong>${appointment.patientName}</strong>,</p>
+                <p>${statusMessage}</p>
+                
+                <div style="background-color: #f9f9f9; border-left: 4px solid ${statusColor}; padding: 15px; margin: 20px 0; border-radius: 4px;">
+                    <p style="margin: 4px 0;"><strong>Doctor:</strong> ${doctorName}</p>
+                    <p style="margin: 4px 0;"><strong>Treatment:</strong> ${appointment.treatment}</p>
+                    <p style="margin: 4px 0;"><strong>Consultation Mode:</strong> ${appointment.consultationType}</p>
+                    <p style="margin: 4px 0;"><strong>Date:</strong> ${new Date(appointment.appointmentDate).toLocaleDateString('en-IN')}</p>
+                    <p style="margin: 4px 0;"><strong>Time Slot:</strong> ${appointment.preferredTimeSlot}</p>
+                    <p style="margin: 4px 0;"><strong>Current Status:</strong> <span style="color: ${statusColor}; font-weight: bold;">${appointment.status}</span></p>
+                    ${appointment.doctorNotes ? `<p style="margin: 8px 0 4px 0;"><strong>Doctor's Notes:</strong> ${appointment.doctorNotes}</p>` : ''}
+                </div>
+
+                ${appointment.consultationType === 'Online Video Consultation' && appointment.status === 'CONFIRMED' ? `
+                    <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px; margin: 15px 0;">
+                        <p style="margin: 0; font-size: 13px; color: #1e40af;">
+                            📹 <strong>Online Consultation:</strong> Our doctor will initiate the consultation call on your phone (<strong>${appointment.patientPhone}</strong>) / WhatsApp at the scheduled slot.
+                        </p>
+                    </div>
+                ` : ''}
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+                
+                <p style="margin: 0; font-size: 13px; color: #777;">
+                    For any assistance, call us directly at <a href="tel:${config.CLINIC_PHONE}" style="color: #0b8457; text-decoration: none;">${config.CLINIC_PHONE}</a>.
+                </p>
+            </div>
+            <div style="background-color: #f1f1f1; padding: 12px; text-align: center; font-size: 12px; color: #666;">
+                © ${new Date().getFullYear()} ${config.CLINIC_NAME}. All rights reserved.
+            </div>
+        </div>
+    `;
+
+    try {
+        await sendEmail({
+            to: appointment.patientEmail,
+            subject: `[${appointment.status}] Appointment Status Update - ${config.CLINIC_NAME}`,
+            html
+        });
+        logger.info(`✉️ Status update email (${appointment.status}) dispatched to patient: ${appointment.patientEmail}`);
+    } catch (error) {
+        logger.error(`Failed to send status update email: ${error.message}`);
+    }
+};
+
 module.exports = {
     sendEmail,
     sendPatientConfirmationEmail,
-    sendClinicNotificationEmail
+    sendClinicNotificationEmail,
+    sendAppointmentStatusUpdateEmail
 };

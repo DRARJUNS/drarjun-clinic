@@ -90,15 +90,24 @@ const getAppointmentById = async (id) => {
  * Update appointment status & notes
  */
 const updateAppointmentStatus = async (id, { status, doctorNotes }) => {
-    const appointment = await Appointment.findById(id);
+    const appointment = await Appointment.findById(id).populate('doctorId', 'name qualification specialization');
     if (!appointment) {
         throw ApiError.notFound('Appointment not found.');
     }
 
+    const previousStatus = appointment.status;
     if (status) appointment.status = status;
     if (doctorNotes !== undefined) appointment.doctorNotes = doctorNotes;
 
     await appointment.save();
+
+    // Trigger status update email if status changed
+    if (status && status !== previousStatus) {
+        emailService.sendAppointmentStatusUpdateEmail(appointment).catch(err => {
+            console.error(`Error sending status update email for appointment ${id}:`, err);
+        });
+    }
+
     return appointment;
 };
 
