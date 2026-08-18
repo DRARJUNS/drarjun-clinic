@@ -170,10 +170,10 @@ nav ul li a:hover {
 }
 
 .hero-content h1 {
-    font-size: 34px;
-    font-weight: 500;
-    color: #1b4332;
-    margin-bottom: 12px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #11422a;
+    margin-bottom: 10px;
     letter-spacing: 0.5px;
 }
 
@@ -970,9 +970,11 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 28px;
+        font-size: 32px;
+        font-weight: 600;
         margin-bottom: 8px;
         display: block;
+        color: #11422a;
     }
 
     .hero-content h2 {
@@ -1027,11 +1029,11 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 22px;
-        font-weight: 500;
-        margin-bottom: 4px;
+        font-size: 26px;
+        font-weight: 600;
+        margin-bottom: 6px;
         display: block;
-        color: #1b4332;
+        color: #11422a;
     }
 
     .hero-content h2 {
