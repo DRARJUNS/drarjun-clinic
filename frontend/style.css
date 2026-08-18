@@ -140,10 +140,11 @@ nav ul li a:hover {
    HERO
 =================================== */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 95px;
+    padding-bottom: 45px;
     background: url('images/hero.jpeg') no-repeat center center/cover;
-    background-color: #f0f0f0;
-    /* Fallback color */
+    background-color: #f4faf6;
     position: relative;
     display: flex;
     align-items: center;
@@ -151,7 +152,6 @@ nav ul li a:hover {
 }
 
 .overlay {
-
     width: 100%;
     height: 100%;
     display: flex;
@@ -162,38 +162,51 @@ nav ul li a:hover {
 .hero-content {
     text-align: center;
     color: #080808;
-    max-width: 1000px;
-    padding: 20px;
+    max-width: 900px;
+    padding: 15px 20px;
     animation: fadeUp 1s ease;
+    margin: auto;
 }
 
-.hero-content h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
+.hero-subtitle {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0b6b3a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
 }
 
-.hero-content h2 {
-    font-size: 60px;
+.hero-title {
+    font-size: 52px;
+    font-weight: 700;
     color: #06470f;
-    margin-bottom: 10px;
+    line-height: 1.15;
+    margin-bottom: 4px;
 }
 
-.hero-content h3 {
-    font-size: 48px;
-    color: #2fdf46;
-    margin-bottom: 20px;
+.hero-subtitle-green {
+    font-size: 42px;
+    font-weight: 700;
+    color: #16a34a;
+    line-height: 1.15;
+    margin-bottom: 16px;
 }
 
-.hero-content p {
-    font-size: 22px;
-    margin-bottom: 40px;
+.hero-tagline {
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 500;
+    margin-bottom: 28px;
 }
 
 .hero-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
+    margin-bottom: 8px;
 }
 
 .btn {
@@ -691,29 +704,41 @@ nav ul li a:hover {
    HERO HIGHLIGHTS & TESTIMONIAL STARS
 =================================== */
 .hero-highlights {
-    margin-top: 30px;
+    margin-top: 24px;
     display: inline-block;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 16px 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.96);
+    padding: 16px 24px;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
     border-left: 4px solid #0b6b3a;
     text-align: center;
+    max-width: 95%;
 }
 
 .hero-highlights h4 {
     color: #0b6b3a;
-    margin-bottom: 6px;
-    font-size: 17px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.hero-highlights p {
-    font-size: 15px !important;
-    margin-bottom: 0 !important;
-    color: #333;
+.hero-highlights-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 500;
 }
 
-.hero-highlights i {
+.hero-highlights-list span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-highlights-list i {
     color: #0b6b3a;
 }
 
@@ -955,16 +980,21 @@ footer {
         display: block;
     }
 
-    .hero-content h1 {
+    .hero-subtitle {
+        font-size: 16px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-title {
+        font-size: 44px;
+    }
+
+    .hero-subtitle-green {
         font-size: 34px;
     }
 
-    .hero-content h2 {
-        font-size: 46px;
-    }
-
-    .hero-content h3 {
-        font-size: 36px;
+    .hero-tagline {
+        font-size: 16px;
     }
 
     .about-content,
@@ -996,15 +1026,68 @@ footer {
     }
 
     .hero {
-        height: 90vh;
+        min-height: calc(100vh - 65px);
+        padding-top: 85px;
+        padding-bottom: 40px;
     }
 
-    .hero-content h2 {
+    .hero-content {
+        padding: 10px 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+        letter-spacing: 1.2px;
+        margin-bottom: 4px;
+    }
+
+    .hero-title {
         font-size: 36px;
+        margin-bottom: 2px;
     }
 
-    .hero-content h3 {
+    .hero-subtitle-green {
         font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .hero-tagline {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 22px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        max-width: 290px;
+        margin: 0 auto 8px auto;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .hero-highlights {
+        padding: 12px 14px;
+        margin-top: 18px;
+        max-width: 320px;
+    }
+
+    .hero-highlights h4 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .hero-highlights-list {
+        flex-direction: column;
+        gap: 6px;
+        font-size: 12.5px;
+        text-align: left;
     }
 
     .treatment-card img {
@@ -1015,5 +1098,30 @@ footer {
     .doctor-card img {
         width: 180px;
         height: 180px;
+    }
+
+    /* Compact floating buttons on mobile */
+    .whatsapp,
+    .call-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        right: 15px;
+    }
+
+    .whatsapp {
+        bottom: 15px;
+    }
+
+    .call-btn {
+        bottom: 72px;
+    }
+
+    #topBtn {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+        bottom: 128px;
+        right: 18px;
     }
 }
