@@ -198,26 +198,63 @@ nav ul li a:hover {
 
 .btn {
     background: #0b6b3a;
-    color: white;
-    padding: 15px 35px;
+    color: #ffffff;
+    padding: 13px 30px;
     border-radius: 50px;
-    transition: .3s;
+    transition: all 0.3s ease;
     font-weight: 600;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
 }
 
 .btn:hover {
     background: #084d2a;
-    transform: translateY(-3px);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 107, 58, 0.25);
 }
 
 .btn2 {
     background: #91e48f;
-    color: #000c06;
+    color: #04361b;
 }
 
 .btn2:hover {
     background: #0b6b3a;
+    color: #ffffff;
+}
+
+.contact-actions-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.contact-action-btn {
+    padding: 11px 22px;
+    font-size: 13.5px;
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .contact-actions-btn-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .contact-action-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ===================================
