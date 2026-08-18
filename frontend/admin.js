@@ -45,27 +45,6 @@ function showToast(message, type = 'info') {
     }, 4000);
 }
 
-// ==========================================
-// QUICK ACCOUNT SELECTORS (Doctors & Admin)
-// ==========================================
-function selectLoginAccount(accountKey) {
-    const emailInput = document.getElementById('login-email');
-    const passInput = document.getElementById('login-password');
-
-    if (accountKey === 'drnagarjuna') {
-        emailInput.value = 'drnagarjuna@drarjun.com';
-        passInput.value = 'DoctorPassword@2026';
-        showToast('Selected: Dr. P. Nagarjuna (Senior Consultant)', 'info');
-    } else if (accountKey === 'drharshitha') {
-        emailInput.value = 'drharshitha@drarjun.com';
-        passInput.value = 'DoctorPassword@2026';
-        showToast('Selected: Dr. D. Harshitha (Consultant Homeopath)', 'info');
-    } else if (accountKey === 'admin') {
-        emailInput.value = 'admin@drarjun.com';
-        passInput.value = 'AdminPassword@2026';
-        showToast('Selected: Clinic Administrator', 'info');
-    }
-}
 
 // ==========================================
 // AUTHENTICATION & LOGIN FLOW
