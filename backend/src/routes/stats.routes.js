@@ -15,7 +15,7 @@ router.get(
 
 router.post(
     '/test-email',
-    restrictTo(ROLES.SUPER_ADMIN),
+    restrictTo(ROLES.SUPER_ADMIN, ROLES.DOCTOR, ROLES.RECEPTIONIST),
     statsController.testEmailNotification
 );
 
