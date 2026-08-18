@@ -211,6 +211,9 @@ function switchTab(tabId) {
 
     if (tabId === 'appointments') loadAppointments();
     if (tabId === 'doctors') loadDoctors();
+
+    // Auto-close sidebar on mobile after choosing a tab
+    closeSidebar();
 }
 
 document.querySelectorAll('.nav-item').forEach(btn => {
@@ -220,14 +223,55 @@ document.querySelectorAll('.nav-item').forEach(btn => {
     });
 });
 
-// Mobile menu toggle
+// Mobile menu toggle & sidebar controls
 const menuToggle = document.getElementById('menu-toggle');
 const sidebar = document.querySelector('.sidebar');
-if (menuToggle && sidebar) {
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
+const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+
+function openSidebar() {
+    if (sidebar) sidebar.classList.add('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.add('active');
+}
+
+function closeSidebar() {
+    if (sidebar) sidebar.classList.remove('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.remove('active');
+}
+
+function toggleSidebar() {
+    if (sidebar && sidebar.classList.contains('open')) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+}
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleSidebar();
     });
 }
+
+if (sidebarCloseBtn) {
+    sidebarCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeSidebar();
+    });
+}
+
+if (sidebarBackdrop) {
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+}
+
+// Close sidebar on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeSidebar();
+        if (typeof closeModal === 'function') closeModal();
+    }
+});
 
 // ==========================================
 // DASHBOARD INITIALIZATION & DATA FETCHING
