@@ -15,7 +15,7 @@ const CLINIC_KNOWLEDGE = {
     consultationMode: "100% Online (Video Call / WhatsApp / Phone) with Doorstep Medicine Delivery Across India",
     doctors: [
         { name: "Dr. P. Nagarjuna", qualification: "BHMS", specialization: "Skin Diseases, Psoriasis, Eczema, Allergies, Migraine", exp: "8+ Years" },
-        { name: "Dr. D. Harshitha", qualification: "BHMS", specialization: "Hair Fall, PCOD / PCOS, Thyroid Disorders, Diabetes, Arthritis", exp: "6+ Years" }
+        { name: "Dr. D. Harshitha", qualification: "BHMS", specialization: "Hair Fall, PMOS / PCOS, Thyroid Disorders, Diabetes, Arthritis", exp: "6+ Years" }
     ]
 };
 
@@ -39,7 +39,7 @@ Clinic Details:
 - Contact: +91 78429 11774 | Email: drarjunshomoeocare@gmail.com
 - Timings: Mon-Sat 9 AM - 8 PM.
 - Mode: 100% Online Consultation (Video/Phone) + Doorstep Medicine Courier delivery across India.
-- Services: Skin Diseases (Psoriasis, Eczema, Acne), Hair Fall & Scalp Care, PCOD/PCOS, Thyroid, Migraine, Arthritis, Allergies, Diabetes.
+- Services: Skin Diseases (Psoriasis, Eczema, Acne), Hair Fall & Scalp Care, PMOS / PCOS, Thyroid, Migraine, Arthritis, Allergies, Diabetes.
 Your Role:
 - Answer health and homeopathic treatment questions politely, empathetically, and informatively.
 - Highlight that homeopathic remedies are 100% natural, safe, and aim to treat root causes without side effects.
@@ -76,7 +76,7 @@ Your Role:
     ];
 
     if (/hello|hi|hey|greetings|namaste|morning|evening/i.test(text)) {
-        reply = `Hello! 🌿 Welcome to **Dr Arjun's Homoeo Care**.\n\nI am **Arjun AI**, your online homeopathic health assistant. I can help you with:\n\n• **Treatment Info** (Skin, Hair Fall, PCOD, Migraine, Thyroid, Allergies, etc.)\n• **Online Consultation Process** & Medicine Delivery\n• **Booking an Appointment** with our BHMS Doctors\n\nHow may I assist your health journey today?`;
+        reply = `Hello! 🌿 Welcome to **Dr Arjun's Homoeo Care**.\n\nI am **Arjun AI**, your online homeopathic health assistant. I can help you with:\n\n• **Treatment Info** (Skin, Hair Fall, PMOS / PCOS, Migraine, Thyroid, Allergies, etc.)\n• **Online Consultation Process** & Medicine Delivery\n• **Booking an Appointment** with our BHMS Doctors\n\nHow may I assist your health journey today?`;
     }
     else if (/book|appointment|consult|schedule|slot|timing|fee|cost|price/i.test(text)) {
         reply = `📅 **Online Consultation Booking**\n\nBooking a consultation with our experienced BHMS doctors is simple:\n\n1. **Fill the Quick Form**: Enter your name, phone, and symptoms.\n2. **Doctor Consultation**: Detailed video or phone case study at your preferred time slot.\n3. **Doorstep Delivery**: Tailored homeopathic medicines securely couriered to your address.\n\nWould you like to book an appointment right now?`;
@@ -94,8 +94,8 @@ Your Role:
     else if (/hair|fall|alopecia|dandruff|bald|scalp/i.test(text)) {
         reply = `💇‍♀️ **Homeopathic Care for Hair Fall & Scalp Health**:\n\nHomeopathy addresses hormonal changes, nutritional assimilation, stress, and scalp conditions that cause hair thinning and alopecia.\n\n• **Key Benefits**: Strengthens hair roots from within, eliminates recurring dandruff, and stimulates natural follicle regrowth.\n• **Holistic Approach**: Remedies are customized based on individual root causes.\n\n**Dr. D. Harshitha** provides personalized treatment plans for hair restoration.`;
     }
-    else if (/pcod|pcos|period|menstrual|irregular|hormon/i.test(text)) {
-        reply = `🌸 **PCOD / PCOS & Hormonal Balance Treatment**:\n\nHomeopathy offers natural, non-hormonal solutions for PCOD / PCOS without synthetic pills or side effects.\n\n• **How It Helps**: Restores regular ovulation, balances LH/FSH ratios, and controls unwanted weight gain and cystic developments.\n• **Long-Term Wellness**: Focuses on gentle constitutional rebalancing.\n\nConsult **Dr. D. Harshitha** online for an individualized PCOD treatment plan.`;
+    else if (/pmos|pcod|pcos|period|menstrual|irregular|hormon/i.test(text)) {
+        reply = `🌸 **PMOS / PCOS & Hormonal Balance Treatment**:\n\nHomeopathy offers natural, non-hormonal solutions for PMOS / PCOS without synthetic pills or side effects.\n\n• **How It Helps**: Restores regular ovulation, balances LH/FSH ratios, and controls unwanted weight gain and cystic developments.\n• **Long-Term Wellness**: Focuses on gentle constitutional rebalancing.\n\nConsult **Dr. D. Harshitha** online for an individualized PMOS / PCOS treatment plan.`;
     }
     else if (/migraine|headache|head ache/i.test(text)) {
         reply = `🧠 **Homeopathic Treatment for Migraine**:\n\nUnlike temporary painkillers, homeopathy works to permanently reduce the frequency, intensity, and duration of migraine attacks by addressing vascular and neurological triggers.\n\n• Safe, non-addictive remedies tailored to your triggers (light sensitivity, stress, weather changes).`;
@@ -110,7 +110,7 @@ Your Role:
         reply = `🍃 **Allergies & Respiratory Care**:\n\nHomeopathy naturally modulates hyperactive immune reactions against dust, pollen, cold air, and food allergens without causing drowsiness or dependence.`;
     }
     else if (/doctor|who|dr arjun|dr nagarjuna|dr harshitha|qualification|experience/i.test(text)) {
-        reply = `👨‍⚕️ **Meet Our Qualified Homeopaths**:\n\n• **Dr. P. Nagarjuna (BHMS)**: 8+ years experience in chronic skin diseases, psoriasis, allergies, and migraine.\n• **Dr. D. Harshitha (BHMS)**: 6+ years experience in hair fall, PCOD/PCOS, thyroid, and lifestyle metabolic health.\n\nBoth doctors offer 1-on-1 personalized online video consultations.`;
+        reply = `👨‍⚕️ **Meet Our Qualified Homeopaths**:\n\n• **Dr. P. Nagarjuna (BHMS)**: 8+ years experience in chronic skin diseases, psoriasis, allergies, and migraine.\n• **Dr. D. Harshitha (BHMS)**: 6+ years experience in hair fall, PMOS / PCOS, thyroid, and lifestyle metabolic health.\n\nBoth doctors offer 1-on-1 personalized online video consultations.`;
     }
     else if (/side effect|safe|baby|child|children|pregnant|natural/i.test(text)) {
         reply = `🌿 **Is Homeopathy Safe?**\n\nYes, 100%! Homeopathic medicines are:\n\n• Completely natural, gentle, and non-toxic.\n• Safe for infants, children, pregnant women, and elderly individuals.\n• Zero chemical side effects and non-addictive.\n• Compatible with healthy lifestyle practices.`;
@@ -123,7 +123,7 @@ Your Role:
         ];
     }
     else {
-        reply = `Thank you for your question! 🌿\n\nAt **Dr Arjun's Homoeo Care**, we specialize in natural homeopathic treatments for chronic skin conditions, hair fall, PCOD, migraines, thyroid, allergies, and joint pains through **100% Online Consultations** with doorstep medicine delivery.\n\nWould you like to book an online appointment or speak directly with our doctors on WhatsApp?`;
+        reply = `Thank you for your question! 🌿\n\nAt **Dr Arjun's Homoeo Care**, we specialize in natural homeopathic treatments for chronic skin conditions, hair fall, PMOS / PCOS, migraines, thyroid, allergies, and joint pains through **100% Online Consultations** with doorstep medicine delivery.\n\nWould you like to book an online appointment or speak directly with our doctors on WhatsApp?`;
     }
 
     return {

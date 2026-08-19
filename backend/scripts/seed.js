@@ -82,7 +82,7 @@ const seedData = async () => {
                 userId: doc2User._id,
                 name: 'Dr. D. Harshitha',
                 qualification: 'BHMS',
-                specialization: ['Hair Fall', 'PCOD / PCOS', 'Thyroid Disorders', 'Diabetes', 'Arthritis'],
+                specialization: ['Hair Fall', 'PMOS / PCOS', 'Thyroid Disorders', 'Diabetes', 'Arthritis'],
                 experienceYears: 6,
                 bio: 'Passionate about holistic healing, lifestyle integration, and natural constitutional care.',
                 avatar: 'images/dr-harshitha.jpeg',

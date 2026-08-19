@@ -22,6 +22,7 @@ const TREATMENT_CATEGORIES = Object.freeze([
     'Migraine',
     'Arthritis',
     'Thyroid Disorders',
+    'PMOS / PCOS',
     'PCOD / PCOS',
     'Diabetes',
     'Other / General Consultation'
