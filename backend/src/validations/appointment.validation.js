@@ -8,8 +8,8 @@ const createAppointmentSchema = z.object({
     patientPhone: z.string().regex(/^[6-9]\d{9}$/, 'Invalid Indian mobile number (must be 10 digits starting with 6-9)').optional(),
     phone: z.string().regex(/^[6-9]\d{9}$/, 'Invalid Indian mobile number (must be 10 digits starting with 6-9)').optional(),
     
-    patientEmail: z.string().email('Invalid email address').optional().or(z.literal('')),
-    email: z.string().email('Invalid email address').optional().or(z.literal('')),
+    patientEmail: z.string().email('Please enter a valid email address').trim().optional(),
+    email: z.string().email('Please enter a valid email address').trim().optional(),
     
     patientAge: z.number().int().min(0).max(120).optional(),
     patientGender: z.enum(['Male', 'Female', 'Other', 'Prefer not to say']).optional(),
@@ -25,10 +25,13 @@ const createAppointmentSchema = z.object({
 }).refine(data => data.patientPhone || data.phone, {
     message: 'Valid 10-digit Indian phone number is required',
     path: ['patientPhone']
+}).refine(data => (data.patientEmail && data.patientEmail.length > 0) || (data.email && data.email.length > 0), {
+    message: 'Patient email address is required',
+    path: ['patientEmail']
 }).transform(data => ({
     patientName: data.patientName || data.name,
     patientPhone: data.patientPhone || data.phone,
-    patientEmail: data.patientEmail || data.email || '',
+    patientEmail: data.patientEmail || data.email,
     patientAge: data.patientAge,
     patientGender: data.patientGender || 'Prefer not to say',
     doctorId: data.doctorId || undefined,
