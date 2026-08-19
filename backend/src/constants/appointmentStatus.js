@@ -25,6 +25,8 @@ const TREATMENT_CATEGORIES = Object.freeze([
     'PMOS / PCOS',
     'PCOD / PCOS',
     'Diabetes',
+    'General Consultation',
+    'Other complaint',
     'Other / General Consultation'
 ]);
 
