@@ -617,10 +617,6 @@ function renderKits(activeCategory = "all", searchQuery = "") {
                 </div>
                 <div class="kit-card-body">
                     <p class="kit-tagline">${kit.tagline}</p>
-                    <div class="kit-remedies-preview">
-                        <strong><i class="fas fa-flask"></i> Contains ${kit.remedies.length} Key Remedies:</strong>
-                        <span>${kit.remedies.slice(0, 3).map(r => r.name).join(", ")} + ${kit.remedies.length - 3} more</span>
-                    </div>
                     <div class="kit-price-row">
                         <span class="kit-price">₹${kit.price}</span>
                         <span class="kit-mrp">₹${kit.mrp}</span>
