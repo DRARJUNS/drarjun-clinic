@@ -2316,8 +2316,20 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     width: 100%;
+}
+
+.upi-qr-img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid #c8e6c9;
+    padding: 6px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 4px;
 }
 
 .qr-placeholder i {

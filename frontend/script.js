@@ -946,7 +946,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyUpiBtn = document.getElementById("copy-upi-btn");
     if (copyUpiBtn) {
         copyUpiBtn.addEventListener("click", function() {
-            const upiId = document.getElementById("clinic-upi-id")?.innerText || "7842911774@ybl";
+            const upiId = document.getElementById("clinic-upi-id")?.innerText || "pathlavathsb4676@naviaxis";
             navigator.clipboard.writeText(upiId).then(() => {
                 const origText = copyUpiBtn.innerHTML;
                 copyUpiBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
