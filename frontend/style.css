@@ -1291,6 +1291,171 @@ footer {
 }
 
 /* ===================================
+   KITS HERO BANNER (DEDICATED KITS PAGE)
+=================================== */
+.kits-hero-banner {
+    background: linear-gradient(135deg, #0b6b3a 0%, #053b1f 100%);
+    color: #ffffff;
+    padding: 140px 0 60px 0;
+    text-align: center;
+    position: relative;
+}
+
+.kits-hero-content {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.kits-hero-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: #91e48f;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.kits-hero-banner h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+.kits-hero-banner p {
+    font-size: 17px;
+    opacity: 0.92;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.kits-hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.kits-hero-features i {
+    color: #91e48f;
+    margin-right: 6px;
+}
+
+.active-nav {
+    color: #0b6b3a !important;
+    font-weight: 700 !important;
+}
+
+/* ===================================
+   HOMEPAGE KITS SHOWCASE BANNER
+=================================== */
+.kits-showcase-banner {
+    background: #f1f8f3;
+    padding: 70px 0;
+}
+
+.kits-showcase-card {
+    background: linear-gradient(135deg, #0b6b3a 0%, #084d2a 100%);
+    border-radius: 20px;
+    padding: 45px 40px;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    box-shadow: 0 12px 36px rgba(11, 107, 58, 0.2);
+}
+
+.kits-showcase-text .badge-pill {
+    background: rgba(255, 255, 255, 0.18);
+    color: #91e48f;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.kits-showcase-text h2 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.kits-showcase-text p {
+    font-size: 16px;
+    opacity: 0.92;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-showcase {
+    background: #ffffff;
+    color: #0b6b3a;
+    font-weight: 700;
+    padding: 13px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-showcase:hover {
+    background: #91e48f;
+    color: #04361b;
+    transform: translateY(-2px);
+}
+
+.kits-showcase-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.showcase-mini-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.showcase-mini-card i {
+    font-size: 24px;
+    color: #91e48f;
+}
+
+.showcase-mini-card h4 {
+    margin: 0 0 2px 0;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.showcase-mini-card p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+@media (max-width: 992px) {
+    .kits-showcase-card {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+    }
+}
+
+/* ===================================
    SPECIALTY KITS SECTION & FILTERS
 =================================== */
 .kits {

@@ -45,7 +45,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 const frontendPath = path.join(__dirname, '../../frontend');
 app.use(express.static(frontendPath));
 
-// Route shortcut for Admin Portal
+// Route shortcuts for Kits Page & Admin Portal
+app.get('/kits', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'kits.html'));
+});
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(frontendPath, 'admin.html'));
 });

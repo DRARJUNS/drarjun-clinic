@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homeopathic Specialty Kits | Dr Arjun's Homoeo Care</title>
+    <meta name="description"
+        content="Explore doctor-formulated Homeopathic Specialty Kits for First Aid, PCOS, Migraine, Kidney Stones, Diabetes, Hair Fall, Skin, and Chronic Diseases. Doorstep Delivery across India.">
+
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Loading Homeopathy Specialty Kits...</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.jpeg" alt="Dr Arjun's Homoeo Care Logo">
+                <h2>Dr Arjun's Homoeo Care</h2>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#doctors">Doctors</a></li>
+                    <li><a href="index.html#treatments">Treatments</a></li>
+                    <li><a href="kits.html" class="active-nav">Specialty Kits</a></li>
+                    <li><a href="index.html#why-us">Why Us</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="header-cart-btn" id="header-cart-btn" title="View Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count-badge" id="cart-count">0</span>
+                </div>
+                <div class="menu-btn" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner Hero -->
+    <section class="kits-hero-banner">
+        <div class="container">
+            <div class="kits-hero-content">
+                <span class="kits-hero-tag"><i class="fas fa-certificate"></i> Doctor-Formulated Formulations</span>
+                <h1>Homeopathic Specialty Kits</h1>
+                <p>100% Safe, Natural & Gentle Care • Each Kit Contains 6+ Handpicked Remedies • Free Doorstep Express Delivery</p>
+                <div class="kits-hero-features">
+                    <span><i class="fas fa-check-circle"></i> 100% Genuine Remedies</span>
+                    <span><i class="fas fa-truck-fast"></i> Pan-India Free Shipping</span>
+                    <span><i class="fas fa-user-doctor"></i> Doctor Guidance Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialty Kits Catalogue Section -->
+    <section class="kits" id="kits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore All 18 Specialty Kits</h2>
+                <p>Select a kit to view remedies, dosage instructions, or place an instant order</p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="kits-filter-wrapper">
+                <div class="kits-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="kit-search" placeholder="Search kit by condition or remedy (e.g. Arnica, Migraine, PCOS)...">
+                    <button id="clear-search-btn" title="Clear Search"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="kits-categories">
+                    <button class="filter-tab active" data-category="all"><i class="fas fa-grid-2"></i> All Kits (18)</button>
+                    <button class="filter-tab" data-category="emergency"><i class="fas fa-kit-medical"></i> Emergency & Trauma</button>
+                    <button class="filter-tab" data-category="women"><i class="fas fa-person-dress"></i> Women & Child</button>
+                    <button class="filter-tab" data-category="digestive"><i class="fas fa-utensils"></i> Digestive & Stomach</button>
+                    <button class="filter-tab" data-category="pain"><i class="fas fa-bone"></i> Pain & Headaches</button>
+                    <button class="filter-tab" data-category="organ"><i class="fas fa-heart-pulse"></i> Organ & Chronic</button>
+                    <button class="filter-tab" data-category="skin"><i class="fas fa-spa"></i> Skin & Hair</button>
+                </div>
+            </div>
+
+            <!-- Kits Grid Container (Rendered dynamically via script.js) -->
+            <div class="kits-grid" id="kits-grid">
+                <!-- Dynamic cards loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Buttons -->
+    <a href="https://wa.me/917842911774" class="whatsapp" target="_blank" rel="noopener noreferrer"
+        title="Chat with us on WhatsApp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:7842911774" class="call-btn" title="Call Us Directly" aria-label="Call Clinic">
+        <i class="fas fa-phone"></i>
+    </a>
+    <button id="topBtn" title="Back to Top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Cart Overlay & Slide Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart Drawer">
+        <div class="cart-drawer-header">
+            <h3><i class="fas fa-shopping-basket"></i> Your Order Cart (<span id="drawer-cart-count">0</span>)</h3>
+            <button class="close-drawer-btn" id="close-cart-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-drawer-body" id="cart-items-container">
+            <!-- Dynamic Cart Items -->
+        </div>
+        <div class="cart-drawer-footer">
+            <div class="cart-shipping-note">
+                <i class="fas fa-truck-fast"></i> <strong>FREE Express Delivery</strong> across India on all Homeopathy Kits!
+            </div>
+            <div class="cart-summary-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">₹0</span>
+            </div>
+            <div class="cart-summary-row total-row">
+                <span>Total Amount:</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-block" id="proceed-checkout-btn">
+                    Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-clear-cart" id="clear-cart-btn">Clear Cart</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Kit Remedies Modal -->
+    <div class="modal-overlay" id="kit-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="close-kit-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-header" id="kit-modal-header">
+                <!-- Dynamic Header -->
+            </div>
+            <div class="modal-body" id="kit-modal-body">
+                <!-- Dynamic Remedies List & Dosage -->
+            </div>
+            <div class="modal-footer" id="kit-modal-footer">
+                <!-- Dynamic Action Button -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-card checkout-modal-card">
+            <button class="modal-close" id="close-checkout-modal"><i class="fas fa-times"></i></button>
+            <div class="checkout-modal-header">
+                <h3><i class="fas fa-lock"></i> Checkout & Delivery Information</h3>
+                <p>Provide your delivery details to complete your Homeopathy Kit order.</p>
+            </div>
+            <div class="checkout-order-summary">
+                <h4>Order Summary (<span id="checkout-items-count">0</span> items)</h4>
+                <div id="checkout-items-preview"></div>
+                <div class="checkout-total-badge">
+                    Total Payable: <strong id="checkout-total-price">₹0</strong> (Free Home Delivery)
+                </div>
+            </div>
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="co-name">Full Name *</label>
+                        <input type="text" id="co-name" placeholder="Enter patient / customer full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="co-phone">Mobile Number (10 digits) *</label>
+                        <input type="tel" id="co-phone" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="co-email">Email Address *</label>
+                        <input type="email" id="co-email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="co-pincode">Pincode *</label>
+                        <input type="text" id="co-pincode" placeholder="6-digit postal code" pattern="[0-9]{6}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="co-address">Full Delivery Address *</label>
+                    <textarea id="co-address" rows="3" placeholder="House/Flat No., Building, Street Name, Landmark, City & State" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="co-notes">Doctor Consultation Note / Medical History (Optional)</label>
+                    <input type="text" id="co-notes" placeholder="Any specific symptoms or health condition details for Dr. Arjun">
+                </div>
+
+                <div class="checkout-actions">
+                    <button type="button" class="btn btn-whatsapp" id="checkout-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Instant Order via WhatsApp
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="checkout-submit-btn">
+                        <i class="fas fa-check-circle"></i> Submit Order Online
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toast">
+        <i class="fas fa-check-circle"></i> <span id="toast-msg">Item added to cart!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Dr Arjun's Homoeo Care</h3>
+                <p>Natural Healing • Personalized Treatment • Holistic Care</p>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#doctors">Doctors</a>
+                    <a href="index.html#treatments">Treatments</a>
+                    <a href="kits.html">Specialty Kits</a>
+                    <a href="index.html#why-us">Why Us</a>
+                    <a href="index.html#testimonials">Testimonials</a>
+                    <a href="index.html#appointment">Book Appointment</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <p class="copyright">© 2026 Dr Arjun's Homoeo Care. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>
