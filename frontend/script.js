@@ -807,8 +807,11 @@ function openCheckoutModal() {
     const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
     const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
+    const upiQrAmount = document.getElementById("upi-qr-amount");
+
     if (countSpan) countSpan.textContent = totalItems;
     if (totalPriceSpan) totalPriceSpan.textContent = `₹${totalPrice}`;
+    if (upiQrAmount) upiQrAmount.textContent = `Payable: ₹${totalPrice}`;
 
     if (previewContainer) {
         previewContainer.innerHTML = cart.map(item => `
@@ -909,6 +912,60 @@ document.addEventListener("DOMContentLoaded", () => {
     if (proceedCheckoutBtn) proceedCheckoutBtn.addEventListener("click", openCheckoutModal);
     if (clearCartBtn) clearCartBtn.addEventListener("click", clearCart);
 
+    // PAYMENT METHOD SELECTOR SWITCHING
+    const paymentCards = document.querySelectorAll(".payment-option-card");
+    paymentCards.forEach(card => {
+        card.addEventListener("click", function() {
+            paymentCards.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+
+            const radioInput = this.querySelector('input[type="radio"]');
+            if (radioInput) radioInput.checked = true;
+
+            const method = this.getAttribute("data-method");
+            const upiPanel = document.getElementById("upi-payment-panel");
+            const codPanel = document.getElementById("cod-payment-panel");
+            const waPanel = document.getElementById("whatsapp-payment-panel");
+            const submitBtn = document.getElementById("checkout-submit-btn");
+            const waBtn = document.getElementById("checkout-whatsapp-btn");
+
+            if (upiPanel) upiPanel.classList.toggle("active", method === "upi");
+            if (codPanel) codPanel.classList.toggle("active", method === "cod");
+            if (waPanel) waPanel.classList.toggle("active", method === "whatsapp");
+
+            if (submitBtn) {
+                submitBtn.style.display = method === "whatsapp" ? "none" : "block";
+                if (method === "upi") {
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm UPI Payment & Order';
+                } else if (method === "cod") {
+                    submitBtn.innerHTML = '<i class="fas fa-truck"></i> Confirm Cash on Delivery Order';
+                }
+            }
+            if (waBtn) {
+                waBtn.style.display = method === "whatsapp" ? "block" : "none";
+            }
+        });
+    });
+
+    // COPY UPI ID BUTTON
+    const copyUpiBtn = document.getElementById("copy-upi-btn");
+    if (copyUpiBtn) {
+        copyUpiBtn.addEventListener("click", function() {
+            const upiId = document.getElementById("clinic-upi-id")?.innerText || "7842911774@ybl";
+            navigator.clipboard.writeText(upiId).then(() => {
+                const origText = copyUpiBtn.innerHTML;
+                copyUpiBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyUpiBtn.style.background = "#2e7d32";
+                setTimeout(() => {
+                    copyUpiBtn.innerHTML = origText;
+                    copyUpiBtn.style.background = "#0b6b3a";
+                }, 2000);
+            }).catch(err => {
+                console.error("Clipboard copy error:", err);
+            });
+        });
+    }
+
     // WHATSAPP CHECKOUT ORDER
     const whatsappCheckoutBtn = document.getElementById("checkout-whatsapp-btn");
     if (whatsappCheckoutBtn) {
@@ -947,11 +1004,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ONLINE CHECKOUT FORM SUBMISSION
+    // ONLINE CHECKOUT FORM SUBMISSION (UPI / COD / ONLINE)
     const checkoutForm = document.getElementById("checkout-form");
     if (checkoutForm) {
         checkoutForm.addEventListener("submit", async function(e) {
             e.preventDefault();
+
+            const selectedMethodRadio = document.querySelector('input[name="paymentMethod"]:checked');
+            const paymentMethod = selectedMethodRadio ? selectedMethodRadio.value : "upi";
+            const utr = document.getElementById("co-utr")?.value.trim() || "";
+
+            if (paymentMethod === "upi" && utr.length !== 12) {
+                alert("⚠️ Please enter your valid 12-digit UPI UTR / Transaction Reference Number after completing payment in GPay/PhonePe.");
+                document.getElementById("co-utr")?.focus();
+                return;
+            }
 
             const submitBtn = document.getElementById("checkout-submit-btn");
             const originalBtnText = submitBtn ? submitBtn.innerHTML : "Submit Order Online";
@@ -977,7 +1044,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 patientEmail: email,
                 treatment: "Homeopathy Specialty Kit Order",
                 consultationType: "ONLINE",
-                message: `ORDER DETAILS:\nKits: ${itemsListStr}\nTotal Amount: ₹${totalPrice}\nDelivery Address: ${address}, Pincode: ${pincode}\nMedical Notes: ${notes}`
+                message: `ORDER DETAILS:\nPayment Method: ${paymentMethod.toUpperCase()}\n${paymentMethod === 'upi' ? `UPI UTR Ref: ${utr}\n` : ''}Kits: ${itemsListStr}\nTotal Amount: ₹${totalPrice}\nDelivery Address: ${address}, Pincode: ${pincode}\nMedical Notes: ${notes}`
             };
 
             const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:";
@@ -1001,13 +1068,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     throw new Error(result.error || result.message || "Failed to place order.");
                 }
 
-                alert(`🎉 Thank you ${name}! Your Homeopathy Kit order has been placed successfully.\n\nOur clinic team will dispatch your kits to ${address} shortly.`);
+                if (paymentMethod === "upi") {
+                    alert(`🎉 Thank you ${name}!\n\nYour UPI Payment (Ref: ${utr}) and Homeopathy Kit order have been received successfully.\n\nOur clinic team will dispatch your kits to ${address} shortly.`);
+                } else {
+                    alert(`🎉 Thank you ${name}!\n\nYour Cash on Delivery Homeopathy Kit order has been placed successfully.\n\nPlease pay ₹${totalPrice} in cash upon delivery at ${address}.`);
+                }
+
                 clearCart();
                 closeCheckoutModal();
                 checkoutForm.reset();
             } catch (err) {
                 console.error("Order submission error:", err);
-                alert("⚠️ Order Submission Note: We registered your attempt. If server connection failed, please click 'Instant Order via WhatsApp' to complete your order directly with Dr. Arjun.");
+                alert("⚠️ Order Note: We saved your details. If server connection failed, please click 'WhatsApp Order' to complete your order directly with Dr. Arjun.");
             } finally {
                 if (submitBtn) {
                     submitBtn.disabled = false;

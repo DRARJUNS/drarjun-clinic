@@ -2174,6 +2174,219 @@ footer {
 }
 
 /* ===================================
+   CHECKOUT PAYMENT METHOD SELECTOR
+=================================== */
+.payment-method-section {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.payment-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.payment-option-card {
+    border: 2px solid #e0ebd8;
+    border-radius: 12px;
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: #fdfdfd;
+    text-align: center;
+    position: relative;
+    user-select: none;
+}
+
+.payment-option-card input[type="radio"] {
+    display: none;
+}
+
+.payment-option-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.payment-option-content i {
+    font-size: 20px;
+    color: #0b6b3a;
+    margin-bottom: 2px;
+}
+
+.payment-option-content span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.2;
+}
+
+.payment-option-content small {
+    font-size: 10px;
+    color: #666;
+}
+
+.payment-option-card.active {
+    border-color: #0b6b3a;
+    background: #e8f5e9;
+    box-shadow: 0 4px 12px rgba(11, 107, 58, 0.15);
+}
+
+.payment-option-card.active .payment-option-content i {
+    color: #0b6b3a;
+}
+
+.payment-panel {
+    display: none;
+    margin-bottom: 18px;
+}
+
+.payment-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.upi-box {
+    background: #f4fbf5;
+    border: 1px solid #c8e6c9;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.upi-box-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d0e7d2;
+    margin-bottom: 14px;
+}
+
+.upi-box-header i {
+    font-size: 24px;
+    color: #0b6b3a;
+}
+
+.upi-box-header h5 {
+    margin: 0 0 2px 0;
+    font-size: 13px;
+    color: #0b6b3a;
+}
+
+.upi-box-header p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+.btn-copy-upi {
+    margin-left: auto;
+    background: #0b6b3a;
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-copy-upi:hover {
+    background: #084f2b;
+}
+
+.upi-qr-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.qr-placeholder {
+    background: #ffffff;
+    border: 2px dashed #0b6b3a;
+    border-radius: 14px;
+    padding: 16px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.qr-placeholder i {
+    font-size: 38px;
+    color: #0b6b3a;
+}
+
+.qr-placeholder span {
+    font-weight: 700;
+    font-size: 13px;
+    color: #0b6b3a;
+    letter-spacing: 0.5px;
+}
+
+.qr-placeholder small {
+    font-size: 11px;
+    color: #555;
+}
+
+.qr-placeholder strong {
+    font-size: 14px;
+    color: #d9534f;
+    margin-top: 2px;
+}
+
+.help-text {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 11px;
+}
+
+.cod-box,
+.whatsapp-box {
+    background: #f9fbf8;
+    border: 1px dashed #0b6b3a;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.cod-box i {
+    font-size: 28px;
+    color: #0b6b3a;
+}
+
+.whatsapp-box i {
+    font-size: 28px;
+    color: #25D366;
+}
+
+.cod-box h5,
+.whatsapp-box h5 {
+    margin: 0 0 3px 0;
+    font-size: 14px;
+    color: #0b6b3a;
+}
+
+.cod-box p,
+.whatsapp-box p {
+    margin: 0;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* ===================================
    TOAST NOTIFICATION
 =================================== */
 .toast-notification {

@@ -214,12 +214,94 @@
                     <input type="text" id="co-notes" placeholder="Any specific symptoms or health condition details for Dr. Arjun">
                 </div>
 
+                <!-- Payment Method Selection -->
+                <div class="form-group payment-method-section">
+                    <label>Select Payment Method *</label>
+                    <div class="payment-options-grid">
+                        <label class="payment-option-card active" data-method="upi">
+                            <input type="radio" name="paymentMethod" value="upi" checked>
+                            <div class="payment-option-content">
+                                <i class="fas fa-qrcode"></i>
+                                <span>UPI / GPay / PhonePe</span>
+                                <small>0% Fee • Instant</small>
+                            </div>
+                        </label>
+                        <label class="payment-option-card" data-method="cod">
+                            <input type="radio" name="paymentMethod" value="cod">
+                            <div class="payment-option-content">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                                <span>Cash on Delivery</span>
+                                <small>Pay at Doorstep</small>
+                            </div>
+                        </label>
+                        <label class="payment-option-card" data-method="whatsapp">
+                            <input type="radio" name="paymentMethod" value="whatsapp">
+                            <div class="payment-option-content">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp Order</span>
+                                <small>Direct Chat</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- UPI Payment Instructions Panel -->
+                <div class="payment-panel active" id="upi-payment-panel">
+                    <div class="upi-box">
+                        <div class="upi-box-header">
+                            <i class="fas fa-mobile-screen-button"></i>
+                            <div>
+                                <h5>Pay via GPay / PhonePe / Paytm / BHIM</h5>
+                                <p>UPI ID: <strong id="clinic-upi-id">7842911774@ybl</strong></p>
+                            </div>
+                            <button type="button" class="btn-copy-upi" id="copy-upi-btn" title="Copy UPI ID">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="upi-qr-wrapper">
+                            <div class="qr-placeholder">
+                                <i class="fas fa-qrcode"></i>
+                                <span>SCAN & PAY VIA UPI</span>
+                                <small>Open GPay / PhonePe / Paytm to scan</small>
+                                <strong id="upi-qr-amount">Payable: ₹0</strong>
+                            </div>
+                        </div>
+                        <div class="form-group margin-top-12">
+                            <label for="co-utr">Transaction Reference / UTR Number (12 digits) *</label>
+                            <input type="text" id="co-utr" placeholder="e.g. 423589123456 (Found in GPay/PhonePe receipt)" pattern="[0-9]{12}">
+                            <small class="help-text">Enter your 12-digit UTR/Ref No. after completing payment to verify your order instantly.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COD Panel -->
+                <div class="payment-panel" id="cod-payment-panel">
+                    <div class="cod-box">
+                        <i class="fas fa-truck-fast"></i>
+                        <div>
+                            <h5>Cash on Delivery (COD) Selected</h5>
+                            <p>You will pay cash to our courier partner when your Homeopathy Kit package is delivered to your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Panel -->
+                <div class="payment-panel" id="whatsapp-payment-panel">
+                    <div class="whatsapp-box">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h5>WhatsApp Direct Checkout</h5>
+                            <p>Clicking the button below will open WhatsApp with your full order summary and address pre-filled to chat with Dr. Arjun directly.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="checkout-actions">
-                    <button type="button" class="btn btn-whatsapp" id="checkout-whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> Instant Order via WhatsApp
-                    </button>
                     <button type="submit" class="btn btn-primary" id="checkout-submit-btn">
-                        <i class="fas fa-check-circle"></i> Submit Order Online
+                        <i class="fas fa-check-circle"></i> Confirm UPI Payment & Order
+                    </button>
+                    <button type="button" class="btn btn-whatsapp" id="checkout-whatsapp-btn" style="display: none;">
+                        <i class="fab fa-whatsapp"></i> Instant Order via WhatsApp
                     </button>
                 </div>
             </form>
