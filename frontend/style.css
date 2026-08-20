@@ -2043,9 +2043,9 @@ footer {
 .remedy-item {
     background: #f8faf7;
     border-left: 4px solid #0b6b3a;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .remedy-item-name {

@@ -763,7 +763,6 @@ window.openKitModal = function(kitId) {
                     <div class="remedy-item-name">
                         <span><i class="fas fa-check-circle"></i> ${r.name}</span>
                     </div>
-                    <div class="remedy-item-indication">${r.indication}</div>
                 </div>
             `).join("")}
         `;
