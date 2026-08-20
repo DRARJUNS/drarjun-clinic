@@ -24,8 +24,12 @@ const connectDB = async () => {
         });
 
     } catch (error) {
-        logger.error(`MongoDB Connection Failed: ${error.message}`);
-        process.exit(1);
+        logger.error(`MongoDB Connection Note: ${error.message}`);
+        if (config.NODE_ENV === 'production') {
+            process.exit(1);
+        } else {
+            logger.warn('Running server in Development mode without database connection. Static frontend & WhatsApp checkout fully functional.');
+        }
     }
 };
 
