@@ -288,7 +288,7 @@ nav ul li a:hover {
         gap: 16px;
         width: 100%;
     }
-    
+
     .contact-action-btn {
         width: 100%;
         text-align: center;
@@ -1232,6 +1232,13 @@ footer {
 /* ===================================
    HEADER CART BUTTON & BADGE
 =================================== */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
 .header-cart-btn {
     position: relative;
     cursor: pointer;
@@ -1245,7 +1252,7 @@ footer {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    margin-left: 15px;
+    margin-left: 0;
 }
 
 .header-cart-btn:hover {
@@ -1549,7 +1556,7 @@ footer {
 =================================== */
 .cart-float {
     position: fixed;
-    bottom: 90px;
+    bottom: 165px;
     right: 25px;
     background: #0b6b3a;
     color: #fff;
@@ -1812,8 +1819,15 @@ footer {
 }
 
 @keyframes modalPop {
-    from { transform: scale(0.92); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .modal-close {
